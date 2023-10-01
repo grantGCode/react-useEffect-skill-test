@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 
-function App({ children }) {
+function App() {
 
   const [toDoListItems, setListItems] = useState([])
 
-  useEffect((data) => {
+  useEffect(() => {
     fetchToDos()
-    console.log(data)
   }, [])
 
   const fetchToDos = async () => {
@@ -14,14 +13,14 @@ function App({ children }) {
     const items = await responce.json();
     // const parsedItems =items.parse()
 
-    console.log(...items)
+    setListItems(...items)
   }
 
 
   return (
     <div >
       <h1>To Do List</h1>
-      <ul>{toDoListItems}</ul>
+      <div>{JSON.stringify(toDoListItems, null, 2)}</div>
 
     </div>
   );
