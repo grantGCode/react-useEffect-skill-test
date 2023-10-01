@@ -9,12 +9,18 @@ function App() {
       const responce = await fetch('https://jsonplaceholder.typicode.com/todos/');
       const items = await responce.json()
 
-
-      setListItems(items)  
+      // evenly display obj cleaner order by []Key
+      items.forEach(item => {
+        for (let key in item) {
+          console.log(`${key}: ${item[key]}`)
+        }
+      })
     }
+   
     fetchToDos()
+    
   })
-  
+
 
 
 
