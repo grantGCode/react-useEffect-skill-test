@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState, useEffect} from 'react'
 
 function App() {
+
+const [toDoListItems, setListItems] = useState([])
+
+useEffect(() => {
+  fetchToDos()
+}, [toDoListItems])
+
+const fetchToDos = async() => {
+  const responce = await fetch('https://jsonplaceholder.typicode.com/todos/');
+  const items = await responce.json();
+  // const parsedItems =items.parse()
+  
+  setListItems(...items)
+}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <h1>To Do List</h1>
+      <main>{toDoListItems}</main>
+
     </div>
   );
 }
