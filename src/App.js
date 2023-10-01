@@ -1,26 +1,27 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
-function App() {
+function App({ children }) {
 
-const [toDoListItems, setListItems] = useState([])
+  const [toDoListItems, setListItems] = useState([])
 
-useEffect(() => {
-  fetchToDos()
-}, [toDoListItems])
+  useEffect((data) => {
+    fetchToDos()
+    console.log(data)
+  }, [])
 
-const fetchToDos = async() => {
-  const responce = await fetch('https://jsonplaceholder.typicode.com/todos/');
-  const items = await responce.json();
-  // const parsedItems =items.parse()
-  
-  setListItems(...items)
-}
+  const fetchToDos = async () => {
+    const responce = await fetch('https://jsonplaceholder.typicode.com/todos/');
+    const items = await responce.json();
+    // const parsedItems =items.parse()
+
+    console.log(...items)
+  }
 
 
   return (
     <div >
       <h1>To Do List</h1>
-      <main>{toDoListItems}</main>
+      <ul>{toDoListItems}</ul>
 
     </div>
   );
