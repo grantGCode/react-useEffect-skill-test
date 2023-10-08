@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react'
 
 function App() {
 
-  const [toDoListItems, setListItems] = useState()
+  const [toDoListItems, setListItems] = useState([])
 
   useEffect(() => {
     const fetchToDos = async () => {
       const responce = await fetch('https://jsonplaceholder.typicode.com/todos/');
       const items = await responce.json()
-
-
+      /*parse*/
       setListItems(items)  
     }
     fetchToDos()
-  })
+  }, [])
   
 
 
